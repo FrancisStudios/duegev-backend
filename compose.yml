@@ -1,0 +1,16 @@
+version: '3'
+services:
+  duegevbackend:
+    image: duegevbackend:0.1.0
+    environment:
+      - DUEGEVBACKEND_PORT=80
+      - DUEGEVBACKEND_IP=0.0.0.0
+    restart: unless-stopped
+    networks: 
+      unicumnet: 
+        ipv4_address: 172.20.0.30
+
+networks:
+  unicumnet:
+    name: opt_unicumnet
+    external: true
