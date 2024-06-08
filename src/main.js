@@ -9,7 +9,7 @@ DuegevBackendAPI.use(express.json({ type: '*/*'}));
 
 /* ROOT and basic API definitions */
 DuegevBackendAPI.get('/', function (req, res) {
-  res.send('API-at-home root')
+  res.send('Welcome To Duegev Wiki Backend');
 });
 
 DuegevBackendAPI.listen('3000', 'localhost');
