@@ -12,4 +12,4 @@ DuegevBackendAPI.get('/', function (req, res) {
   res.send('Welcome To Duegev Wiki Backend');
 });
 
-DuegevBackendAPI.listen('3000', 'localhost');
+DuegevBackendAPI.listen('80', '172.20.0.40');
