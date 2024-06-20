@@ -21,8 +21,10 @@ const PerformStandardAuth = (inbound, res) => {
         data: {
             user: {
                 uid: 0,
-                username: '******',
-                password: '******',
+                auth: {
+                    username: '******',
+                    password: '******'
+                },
                 playerName: '',
                 prefix: '',
                 language: '',
