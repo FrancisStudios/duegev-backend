@@ -10,3 +10,4 @@ This file contains the table of contents, so you can start from here. You will f
 ## Table of contents 📋
 
 1) Authentication Steps 🔐 [authentication.md](./docs/authentication.md)
+2) User Actions Endpoint 👥 [user-endpoint.md](./docs/user-endpoint.md)

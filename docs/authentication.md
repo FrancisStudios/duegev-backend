@@ -70,3 +70,30 @@ So for a successful login scenario you would receive a response like this:
 **IMPORTANT:** username and password is masked in the UserData you get a session token back, that you can send in your further query payloads (to create, update, delete data)
 
 ### B, If your login was unsuccessful you get the following response
+
+```Javascript
+{ 
+    intent: inbound.intent, 
+    message: 'fail' 
+}
+```
+
+It echoes the inbound intent backwards ``authenticate_user`` and the message is **'fail'** - this is the kind of message you can expect from this endpoint in case of failed queries.
+
+
+## 2. After successful authentications:
+
+After you authenticate an user successfully, you will get back the ``user data`` and the ``'session_token'`` these are the important parts you have to save locally to maintain a session.
+
+You will need to use the ``'session_token'`` in your payload to be able to perform authenticated actions. For next steps go back to the [README.md file in the root folder](../README.md) and you will be able to explore more API endpoints. 
+
+```Typescript
+export type UserAuthenticationResponse = {
+    intent: DuegevAPIIntents,
+    message: DuegevAPIResponseMessage,
+    data?: {    /* If failed, no UD */
+        user: UserData
+        session_token: SHA512String
+    }
+}
+```
