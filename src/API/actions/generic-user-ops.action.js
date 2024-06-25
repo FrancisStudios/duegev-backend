@@ -4,7 +4,9 @@
  * that is required for the CRUD ops
  */
 
+import genericQueryExecutor from "../../utils/generic-query-executor.js";
 import interOperableAuthentication from "./inter-operable-authentication.action.js";
+const failMessage = (intent) => ({ intent: intent, message: 'fail' });
 
 const UserOps = {
     create: () => { },
@@ -22,9 +24,14 @@ const UserOps = {
 
         interOperableAuthentication(inboundDataMapping)
             .then(response => {
-                res.send(response);
+                if (response.message === 'ok') {
+                    /* Todo AUTH IS SUCCESSFUL => response.message.ok => update user data => return response to FE (with sessionTokenPly) */
+                    genericQueryExecutor("", [])
+                        .then((update_response => {
 
-                /* Todo AUTH IS SUCCESSFUL => response.message.ok => update user data => return response to FE (with sessionTokenPly) */
+                        }));
+                } else res.send(failMessage(update_user));
+
             });
     },
 
