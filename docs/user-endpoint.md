@@ -73,6 +73,11 @@ type UserAuthenticationResponse = {
 
 - **query.newUserDataConstruct** your untouched UserData [user-data.types.md](./types/user-data.types.md) - **be aware that privileges, and uid can not be changed**
 
+**IMPORTANT** You have to send the unmasked ``username`` and ``password`` in the ``currentUserFromLocal`` object as: ``username [string]`` and password ``password [string] [SHA]``
+
+To convert your password string into SHA Encrypted format please refer to the [encryption-endpoint.md](./encryption-endpoint.md) file as plain text passwords **are not accepted**.
+
+
 ### B, You will receive the following response from the API when the user change is successful.
 
 You will receive a ``UserAuthenticationResponse`` message with the updated values. Now you can authenticate again, with the new values

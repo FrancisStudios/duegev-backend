@@ -30,6 +30,8 @@ So your request JSON would look something like this when trying to authenticate:
 }
 ```
 
+**IMPORTANT:** To convert your password to the correct SHA Encoding, please refer to the [encryption-endpoint.md](./encryption-endpoint.md) documentation. Where you can send up your password [string] and receive the correct encrypted pass.
+
 ### A, And if the authentication was **successful** you will get the following response
 
 ```Typescript
