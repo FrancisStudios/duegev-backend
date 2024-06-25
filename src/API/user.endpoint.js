@@ -1,5 +1,5 @@
-import genericQueryExecutor from "../utils/generic-query-executor.js";
 import PerformStandardAuth from "./actions/authenticate-user.action.js"
+import UserOps from "./actions/generic-user-ops.action.js";
 
 export default class DuegevUserEndpoint {
     static initEndpoint(DuegevBackendAPI) {
@@ -31,6 +31,7 @@ export default class DuegevUserEndpoint {
 
                 /* UPDATE */
                 case 'update_user':
+                    UserOps.update(inbound, res);
                     break;
 
                 /*  DELETE */

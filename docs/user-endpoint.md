@@ -22,7 +22,7 @@ export type UserData = {
 }
 ```
 
-### A, Send out the following query to the ``/api/user`` [POST] endpoint
+### A, Send out the following query to the ``/api/auth`` [POST] endpoint
 
 ```Typescript
 type UserDataChangeQuery = {
