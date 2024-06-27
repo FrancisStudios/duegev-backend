@@ -1,3 +1,5 @@
+import { sha512 } from "sha512-crypt-ts";
+
 export class DuegevEncryptor {
     static generateRandomSalt() {
         const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ./';
