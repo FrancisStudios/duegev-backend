@@ -10,7 +10,16 @@ import interOperableAuthentication from "./inter-operable-authentication.action.
 const failMessage = (intent) => ({ intent: intent, message: 'fail' });
 
 const UserOps = {
-    create: (inbound, res) => { },
+    create: (inbound, res) => {
+        /**
+         * TODO: plan is the following
+         * 
+         * 1) Identificate user by SESSION ID
+         * 2) Get the UserData by SESSION ID
+         * 3) check if user has the 'recruiter' privilege to do this action
+         * 4) then create new user
+         */
+    },
 
     read: () => { },
 
