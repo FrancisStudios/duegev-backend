@@ -15,6 +15,7 @@ export default class DuegevUserEndpoint {
 
                 /* CREATE */
                 case 'create_user':
+                    UserOps.create(inbound, res);
                     break;
 
                 /* READ */
