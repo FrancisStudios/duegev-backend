@@ -13,7 +13,7 @@ const labelResponseErrorMessages = {
 const createErrorResponseMessage = (res, intent, labelResponseErrorMessage) => {
     const LabelQueryResponse = {
         intent: intent,
-        message: DuegevAPIConstants.API_MESSAGES.OK,
+        message: DuegevAPIConstants.API_MESSAGES.FAIL,
         data: labelResponseErrorMessage
     }
     res.send(JSON.stringify(LabelQueryResponse));
@@ -88,16 +88,3 @@ const GenericLabelOps = {
 }
 
 export default GenericLabelOps;
-
-/*
-export type LabelQuery = {
-    intent: DuegevAPIIntents
-    query?: {               
-        session_token: string,
-        uid: number,
-        label: string,
-        description: string,
-        lid?: number
-    }
-}
-*/
