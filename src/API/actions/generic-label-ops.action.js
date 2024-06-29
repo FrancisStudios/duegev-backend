@@ -88,3 +88,16 @@ const GenericLabelOps = {
 }
 
 export default GenericLabelOps;
+
+/*
+export type LabelQuery = {
+    intent: DuegevAPIIntents
+    query?: {               
+        session_token: string,
+        uid: number,
+        label: string,
+        description: string,
+        lid?: number
+    }
+}
+*/
