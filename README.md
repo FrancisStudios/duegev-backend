@@ -14,6 +14,7 @@ This file contains the table of contents, so you can start from here. You will f
 
 1) Authentication Steps 🔐 [authentication.md](./docs/authentication.md)
 2) User Actions Endpoint 👥 [user-endpoint.md](./docs/user-endpoint.md) _via this endpoint you are allowed to create, read, update, delete users (with the right privileges on your initiator user's table)_ 
+3) Label Actions Endpoint 🏷️ [label-endpoint.md](./docs/label-endpoint.md) via this endpoint you can CRUD labels
 
 
 ## Definitions 💬
