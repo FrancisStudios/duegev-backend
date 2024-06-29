@@ -7,7 +7,23 @@ const DuegevAPIConstants = {
         DEFAULT_PRIVILEGES: ['player']
     },
 
-    GENERIC_DUEGEV_SHA: 'duegevlogin'
+    API_MESSAGES: {
+        OK: 'ok',
+        FAIL: 'fail'
+    },
+
+    GENERIC_DUEGEV_SHA: 'duegevlogin',
+
+    PRIVILEGES: {
+        PLAYER: 'player',
+        EDITOR: 'editor',
+        TIME_MGMT: 'time_management',
+        ADD_LABELS: 'add_labels',
+        UPDATE_MAP: 'update_map',
+        USER_MGMT: 'user_management',
+        RECRUITER: 'recruiter',
+        SUDO: 'sudo'
+    }
 }
 
 export default DuegevAPIConstants;

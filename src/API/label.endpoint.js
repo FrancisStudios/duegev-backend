@@ -14,6 +14,7 @@ export default class DuegevLabelEndpoint {
 
                 /* CREATE */
                 case 'create_label':
+                    GenericLabelOps.create(inbound, res);
                     break;
 
                 /* READ */

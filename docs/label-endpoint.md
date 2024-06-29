@@ -14,6 +14,7 @@ You will send out a request query like this:
 type LabelQuery = {
     intent: DuegevAPIIntents
     query?: {               /* Only at [create/update/delete] intents */
+        session_token: string,
         uid: number,
         label: string,
         description: string,
