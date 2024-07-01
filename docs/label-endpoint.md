@@ -103,3 +103,29 @@ type LabelQueryResponse = {
 ## 3, Update Labels
 
 ## 4, Delete Labels
+
+Deleting labels will require your query to made in the following type
+
+```Typescript
+type LabelQuery = {
+    intent: DuegevAPIIntents.DELETE_LABEL /* delete_label */
+    query: {              
+        session_token: string,
+        uid?: number,
+        label?: string,
+        description?: string,
+        lid: number
+    }
+}
+```
+
+Where your important data will be the ``intent``, the ``query.session_token`` for your authentication (user must have ``add_labels`` privileges to be able to execute this query), and the ``query.lid`` for identifying the label to delete. All other data is ignored in the delete intent query.
+
+
+### A, Success Response
+
+### B, Error Response
+
+You get the same error messages as when you fire the ``create_labels`` intent:
+
+- INVALID_SESSION_TOKEN: 'invalid_session_token' => your session_token is expired or incorrect, or the query.lid is missing or incorrect,

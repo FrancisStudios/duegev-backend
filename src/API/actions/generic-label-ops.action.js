@@ -66,7 +66,7 @@ const GenericLabelOps = {
     },
 
     read: (inbound, res) => {
-        genericQueryExecutor('SELECT * FROM labels', [])
+        genericQueryExecutor('SELECT * FROM labels WHERE label <> ""', [])
             .then((labelResponse) => {
                 if (labelResponse.message === 'ok') {
                     const _APIResponse = {
@@ -84,7 +84,26 @@ const GenericLabelOps = {
 
     update: () => { },
 
-    delete: () => { }
+    delete: async (inbound, res) => {
+        if (inbound.payload.session_token && inbound.payload.lid) {
+            const uidBySessionId = await genericQueryExecutor('SELECT uid FROM sessions WHERE token=?', [inbound.payload.session_token]);
+            const userBySIDUID = await genericQueryExecutor('SELECT * FROM users WHERE uid=?', [uidBySessionId.data[0].uid]);
+
+            const userPrivileges = JSON.parse(JSON.stringify(userBySIDUID.data[0].privileges));
+
+            if (userPrivileges.includes(DuegevAPIConstants.PRIVILEGES.ADD_LABELS)) {
+                const del = await genericQueryExecutor('UPDATE labels SET label="", uid=0, description="" label WHERE lid=?', [inbound.payload.lid]);
+                if (del.message === DuegevAPIConstants.API_MESSAGES.OK) {
+                    const _APIResponse = {
+                        intent: inbound.intent,
+                        message: del.message,
+                    }
+                    console.log(`>> ${userBySIDUID.data[0].username} deleted label with LID: ${inbound.payload.lid}`);
+                    res.send(JSON.stringify(_APIResponse));
+                } else createErrorResponseMessage(res, labelResponseErrorMessages.INTERNAL_ERROR)
+            } else createErrorResponseMessage(res, labelResponseErrorMessages.INSUFFICIENT_PRIVILEGES);
+        } else createErrorResponseMessage(res, labelResponseErrorMessages.INVALID_SESSION_TOKEN);
+    }
 }
 
 export default GenericLabelOps;
