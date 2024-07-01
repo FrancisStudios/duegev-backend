@@ -121,6 +121,7 @@ type LabelQuery = {
 
 Where your important data will be the ``intent``, the ``query.session_token`` for your authentication (user must have ``add_labels`` privileges to be able to execute this query), and the ``query.lid`` for identifying the label to delete. All other data is ignored in the delete intent query.
 
+**IMPORTANT** deleting a label will not delete the record from the db, only removes label from listings and removes your ownership of it. It will be an empty entry in the db, so articles that reference an old deleted label will have no problem with the old label references.
 
 ### A, Success Response
 

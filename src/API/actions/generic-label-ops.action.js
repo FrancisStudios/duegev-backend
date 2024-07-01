@@ -86,13 +86,17 @@ const GenericLabelOps = {
 
     delete: async (inbound, res) => {
         if (inbound.payload.session_token && inbound.payload.lid) {
-            const uidBySessionId = await genericQueryExecutor('SELECT uid FROM sessions WHERE token=?', [inbound.payload.session_token]);
-            const userBySIDUID = await genericQueryExecutor('SELECT * FROM users WHERE uid=?', [uidBySessionId.data[0].uid]);
+            const uidBySessionId = await genericQueryExecutor('SELECT uid FROM sessions WHERE token=?;', [inbound.payload.session_token]);
+            const userBySIDUID = await genericQueryExecutor('SELECT * FROM users WHERE uid=?;', [uidBySessionId.data[0].uid]);
 
             const userPrivileges = JSON.parse(JSON.stringify(userBySIDUID.data[0].privileges));
+            const hasPrivileges = (
+                userPrivileges.includes(DuegevAPIConstants.PRIVILEGES.ADD_LABELS) ||
+                userPrivileges.includes(DuegevAPIConstants.PRIVILEGES.SUDO)
+            )
 
-            if (userPrivileges.includes(DuegevAPIConstants.PRIVILEGES.ADD_LABELS)) {
-                const del = await genericQueryExecutor('UPDATE labels SET label="", uid=0, description="" label WHERE lid=?', [inbound.payload.lid]);
+            if (hasPrivileges) {
+                const del = await genericQueryExecutor(`UPDATE labels SET label = '', uid = 0 , description = '' WHERE lid=?;`, [inbound.payload.lid]);
                 if (del.message === DuegevAPIConstants.API_MESSAGES.OK) {
                     const _APIResponse = {
                         intent: inbound.intent,

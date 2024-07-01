@@ -28,6 +28,7 @@ export default class DuegevLabelEndpoint {
 
                 /*  DELETE */
                 case 'delete_label':
+                    GenericLabelOps.delete(inbound, res);
                     break;
 
             }
