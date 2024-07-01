@@ -6,8 +6,14 @@ import DuegevLabelEndpoint from './API/label.endpoint.js';
 
 const DuegevBackendAPI = express();
 DuegevBackendAPI.use(cors());
-DuegevBackendAPI.use(express.json({ type: '*/*' }));
-
+DuegevBackendAPI.use(express.json({ type: '*/*', limit: '50mb' }));
+DuegevBackendAPI.use(express.urlencoded({ extended: true, limit: '50mb' }));
+DuegevBackendAPI.use(
+  express.json({
+    verify: (req, res, buf) => { req.rawBody = buf.toString() },
+    limit: '50mb'
+  })
+);
 
 /* Init Endpoint Services */
 DuegevUserEndpoint.initEndpoint(DuegevBackendAPI);
